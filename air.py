@@ -1,18 +1,18 @@
 import pandas as pd
-#import pyodbc
+import pyodbc
 from datetime import timedelta
 import airflow
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
 def csvToSql():
-    data = pd.read_csv(r'C:\Users\ozgur\Desktop\data.csv',encoding= 'unicode_escape',sep=';')
+    data = pd.read_csv(r'CSV_FilePath',encoding= 'unicode_escape',sep=';')
     df = pd.DataFrame(data)
 
 #Connect SQL Server
     conn = pyodbc.connect('Driver={SQL Server};'
-                      'Server=LAPTOP-CUU8N58S\SQLEXPRESS;'
-                      'Database=OzgurWH;'
+                      'Server=ServerName;'
+                      'Database=DatabaseName;'
                       'Trusted_Connection=yes;')
     cursor = conn.cursor()
 
